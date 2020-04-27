@@ -30,11 +30,11 @@ const useStyles = makeStyles({
 
 const Repo = (props) => {
   const classes = useStyles();
-  const link = `/repo/${props.repo.id}/commits`;
+  const link = `/org/${props.repo.owner.login}/repo/${props.repo.name}/commits`;
 
   return (
-    <Link to={link}>
-      <Card className={classes.root}>
+    <Link to={link} className={classes.root}>
+      <Card>
         <CardContent>
           <GitHubIcon />
           <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -53,4 +53,4 @@ const Repo = (props) => {
   );
 }
 
-export default Repo
+export default Repo;
