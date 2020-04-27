@@ -5,8 +5,8 @@ import ListItem from '@material-ui/core/ListItem';
 import Repo from './Repo.jsx';
 
 const useStyles = makeStyles({
-  root: {
-    justifyContent: 'center !important',
+  list: {
+    justifyContent: 'center',
   },
 })
 
@@ -17,7 +17,7 @@ const RepoList = (props) => {
     <div>
       <List>
         { props.repos.map(repo => (
-          <ListItem className={classes.root} key={repo.id}>
+          <ListItem className={classes.list} key={repo.id}>
             <Repo repo={repo} />
           </ListItem>
         ))}

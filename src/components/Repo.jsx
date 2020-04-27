@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import StarIcon from '@material-ui/icons/Star';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -25,32 +26,31 @@ const useStyles = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  pos: {
-    marginBottom: 12,
-  },
 });
 
 const Repo = (props) => {
   const classes = useStyles();
-  console.log(props.repo)
+  const link = `/repo/${props.repo.id}/commits`;
+
   return (
-    <Card className={classes.root}>
-      <CardContent>
-        <GitHubIcon />
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          {props.repo.name}
-        </Typography>
-        <Typography className={classes.description} color="textSecondary" gutterBottom>
-          {props.repo.description}
-        </Typography>
-        <Typography className={classes.text} color="textSecondary" gutterBottom>
-          <StarIcon />
-          <span>{props.repo.stargazers_count}</span>
-        </Typography>
-      </CardContent>
-    </Card>
+    <Link to={link}>
+      <Card className={classes.root}>
+        <CardContent>
+          <GitHubIcon />
+          <Typography className={classes.title} color="textSecondary" gutterBottom>
+            {props.repo.name}
+          </Typography>
+          <Typography className={classes.description} color="textSecondary" gutterBottom>
+            {props.repo.description}
+          </Typography>
+          <Typography className={classes.text} color="textSecondary" gutterBottom>
+            <StarIcon />
+            <span>{props.repo.stargazers_count}</span>
+          </Typography>
+        </CardContent>
+      </Card>
+    </Link>
   );
 }
-
 
 export default Repo
