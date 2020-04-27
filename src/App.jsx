@@ -10,7 +10,7 @@ const App = () => {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/repo/:id/commits">
+        <Route path="/org/:org/repo/:name/commits">
           <CommitList />
         </Route>
       </Switch>
