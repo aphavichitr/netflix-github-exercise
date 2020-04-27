@@ -3,13 +3,25 @@ import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import Commit from './Commit.jsx';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
-  // list: {
-  //   justifyContent: 'center',
-  // },
+  title: {
+    color: '#fff',
+    fontSize: 45,
+  },
+  backButton: {
+    align: 'left',
+    color: '#000',
+    backgroundColor: '#fff',
+    marginTop: '5%',
+  },
+  list: {
+    justifyContent: 'center',
+  },
 })
 
 const CommitList = (props) => {
@@ -34,6 +46,8 @@ const CommitList = (props) => {
 
   return (
     <div>
+      <Button className={classes.backButton} href="/">Go back</Button>
+      <h1 className={classes.title}>Recent commits for project {name}</h1>
       <List>
         { commits.map((commit, index) => (
           <ListItem className={classes.list} key={index}>
