@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import RepoList from './RepoList.jsx';
 import '../App.css';
 
 const useStyles = makeStyles({
   title: {
-    color: '#000',
+    color: '#fff',
+    fontSize: 45,
   },
   orgTextField: {
-    width: '50%',
+    width: '80%',
   },
   error: {
     color: '#fff',
@@ -37,7 +39,7 @@ const Home = () => {
 
       try {
         if (org === '') {
-          console.log('error');
+          setError('Please enter a GitHub organization.')
         } else {
           const result = await axios.get(`https://api.github.com/orgs/${org}/repos`);
 
@@ -53,33 +55,31 @@ const Home = () => {
       } catch (err) {
         if (err.response.status === 404) {
           setError('GitHub organization does not exist, please enter another one.')
+        } else {
+          setError(err.response.data.message)
         }
-        console.error(err);
-        console.log(err.response)
       }
     }
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className={classes.title}>Most popular projects by stars</h1>
-        <form className="org-form">
-          <TextField
-            id="org-text"
-            className={classes.orgTextField}
-            label="Enter your GitHub organization"
-            placeholder="netflix"
-            value={org}
-            fullWidth
-            onChange={handleChange}
-            onKeyDown={enterPressed} />
-        </form>
+    <div>
+      <h1 className={classes.title}><GitHubIcon style={{ fontSize: 30 }}/>  Most popular projects by stars</h1>
+      <form className="org-form">
+        <TextField
+          id="org-text"
+          className={classes.orgTextField}
+          label="Enter your GitHub organization"
+          placeholder="netflix"
+          value={org}
+          fullWidth
+          onChange={handleChange}
+          onKeyDown={enterPressed} />
+      </form>
 
-        <span className={classes.error}>{error}</span>
+      <span className={classes.error}>{error}</span>
 
-        <RepoList repos={repos} />
-      </header>
+      <RepoList repos={repos} />
     </div>
   );
 }

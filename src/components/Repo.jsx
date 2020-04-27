@@ -34,7 +34,7 @@ const Repo = (props) => {
 
   return (
     <Link to={link} className={classes.root}>
-      <Card>
+      <Card className={classes.card}>
         <CardContent>
           <GitHubIcon />
           <Typography className={classes.title} color="textSecondary" gutterBottom>
