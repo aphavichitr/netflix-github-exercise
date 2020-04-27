@@ -1,12 +1,20 @@
 import React from 'react';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Repo from './Repo.jsx';
 
 const RepoList = (props) => {
-  console.log(props)
-
   return (
-    <div></div>
+    <div>
+      <List>
+        { props.repos.map(repo => (
+          <ListItem key={repo.id}>
+            <Repo repo={repo} />
+          </ListItem>
+        ))}
+      </List>
+    </div>
   );
 }
-
 
 export default RepoList
